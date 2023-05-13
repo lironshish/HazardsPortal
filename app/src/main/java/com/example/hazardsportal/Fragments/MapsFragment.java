@@ -6,8 +6,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.example.hazardsportal.DataManager.MyDataManager;
 import com.example.hazardsportal.R;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -15,6 +17,10 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 public class MapsFragment extends Fragment {
 
@@ -41,7 +47,30 @@ public class MapsFragment extends Fragment {
         SupportMapFragment supportMapFragment = (SupportMapFragment)
                 getChildFragmentManager().findFragmentById(R.id.map);
         // Async
-        supportMapFragment.getMapAsync(callback);
+        supportMapFragment.getMapAsync(new OnMapReadyCallback() {
+            @Override
+            public void onMapReady(@NonNull GoogleMap googleMap) {
+                mMap = googleMap;
+                DatabaseReference reference = MyDataManager.getInstance().getRealTimeDB().getReference("hazards");
+                reference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            double latitude = snapshot.child("lat").getValue(Double.class);
+                            double longitude = snapshot.child("lon").getValue(Double.class);
+                            LatLng location = new LatLng(latitude, longitude);
+                            // Add the location to the map or do other processing
+                            mMap.addMarker(new MarkerOptions().position(location));
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
         return view;
     }
 
@@ -64,7 +93,6 @@ public class MapsFragment extends Fragment {
         // Zoom out to zoom level 10, animating with a duration of 2 seconds.
         mMap.animateCamera(CameraUpdateFactory.zoomTo(14), 2000, null);
     }
-
 
     private void findViews(View view) {
         locationDetails = view.findViewById(R.id.data);
