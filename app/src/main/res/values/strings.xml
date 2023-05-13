@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">HazardsPortal</string>
+    <string name="app_title">Hazards Portal</string>
     <string name="my_map_api_key">AIzaSyBb6pT47lccawPLVHrmF8JqS8w3zBvmmII</string>
 </resources>
