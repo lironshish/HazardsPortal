@@ -27,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    private void initViews(){
+        title = findViewById(R.id.title);
+    }
     private void initMapsFragment(){
         mapsFragment = new MapsFragment();
         //Open Fragments
