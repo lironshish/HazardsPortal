@@ -15,6 +15,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DataSnapshot;
@@ -60,7 +61,11 @@ public class MapsFragment extends Fragment {
                             double longitude = snapshot.child("lon").getValue(Double.class);
                             LatLng location = new LatLng(latitude, longitude);
                             // Add the location to the map or do other processing
-                            mMap.addMarker(new MarkerOptions().position(location));
+                            mMap.addMarker(new MarkerOptions().position(location).title("High Hazard"));
+
+                            //.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))); // Set marker color
+
+                            moveToCurrentLocation(location);
                         }
                     }
 
