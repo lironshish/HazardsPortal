@@ -8,6 +8,35 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:1012134513932:android:beee5bba5f8fcd7dc08d29",
+        "android_client_info": {
+          "package_name": "com.example.hazardsportal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1012134513932-lsvgns6p9dgskm3qbnvjan7bkg5ghuqr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvdDly1sJGvu4UJihUf7HTINCAgbPHGy0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1012134513932-lsvgns6p9dgskm3qbnvjan7bkg5ghuqr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:1012134513932:android:94658fbeae47ca64c08d29",
         "android_client_info": {
           "package_name": "ohad.liron.hazards"
