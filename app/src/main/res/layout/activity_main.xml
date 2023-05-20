@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
+        android:background="#45454545"
         android:orientation="vertical">
 
 
@@ -31,7 +32,7 @@
             android:layout_height="1dp"
             android:layout_margin="30dp"
             android:layout_weight="1"
-            android:background="#45454545" />
+            android:background="#45FFFBFB" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.constraintlayout.widget.ConstraintLayout>
