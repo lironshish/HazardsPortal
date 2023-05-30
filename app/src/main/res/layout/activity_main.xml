@@ -28,7 +28,7 @@
 
         <FrameLayout
             android:id="@+id/frame_layout"
-            android:layout_width="1200dp"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_margin="30dp"
             android:layout_weight="1"
