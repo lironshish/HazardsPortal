@@ -61,7 +61,16 @@ public class MapsFragment extends Fragment {
                             double longitude = snapshot.child("lon").getValue(Double.class);
                             LatLng location = new LatLng(latitude, longitude);
                             // Add the location to the map or do other processing
-                            mMap.addMarker(new MarkerOptions().position(location).title("High Hazard"));
+                            if(snapshot.child("level").getValue(String.class).equals("HIGH")){
+                                mMap.addMarker(new MarkerOptions().position(location).title("High Hazard").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
+
+                            } else if(snapshot.child("level").getValue(String.class).equals("MEDIUM")){
+                                mMap.addMarker(new MarkerOptions().position(location).title("Medium Hazard").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+
+                            } else if(snapshot.child("level").getValue(String.class).equals("LOW")){
+                                mMap.addMarker(new MarkerOptions().position(location).title("Low Hazard").icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW)));
+
+                            }
 
                             //.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))); // Set marker color
 
